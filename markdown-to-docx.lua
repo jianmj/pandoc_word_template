@@ -1,3 +1,5 @@
+-- 调用：pandoc input.md -o output.docx --lua-filter=markdown-to-docx.lua
+
 -- 通过一个按顺序维护的模块列表来组织需要加载的 Pandoc 过滤器。
 -- 在此列表中添加/调整顺序即可，无需再手写多段 require 与循环。
 local modules = {
