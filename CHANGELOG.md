@@ -1,4 +1,8 @@
 
+## 20250905
+- 新增`markdown-html-recognition.lua`，解决pandoc不支持解析markdown中的html标签的问题，比如`<sub>`、`<sup>`、`<img>`·等
+- 新增`markdown-to-docx.lua`，统一调用`markdown-html-recognition.lua`和`image-title-to-caption.lua`
+
 ## 2025.07.25
 
 - 新增image-title-to-caption-add-number.lua，对图片标题进行编号

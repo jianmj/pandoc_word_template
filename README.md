@@ -2,7 +2,7 @@
 >
 > 幸运的是，pandoc 可以自定义 Word 模板，用于导出时的自动格式化以美化文档，但是很奇怪的是，全网很少有人分享自己是如何具体制作模板的，就算提到也只是泛泛而谈。我自己在制作模板中遇到很多问题，比如怎么设置表格样式、怎么设置列表样式。2023 年 12 月 15 日，我终于突然解决了设置模板的有序列表和无序列表样式问题，使得自己的模板很大程度可用了，所以分享下目前在用的 word 模板，也当做一个抛砖引用，希望有更多人能分享自己的模板！😁
 
-## 前排
+## 前排提示
 
 - 本模板仅在Windows端的Office Word进行测试，可能不适合**WPS**和**苹果端的Office**。
 - 自己使用时可以把模板文件内容清空，以减小导出word的文件大小。
@@ -15,6 +15,7 @@ pandoc 不设置模板导出 docx 的样式
 ![](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/20231215114447-2023-12-15.png)
 
 设置本模板导出 docx 的样式
+
 ![](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/20231215114500-2023-12-15.png)
 
 
@@ -45,10 +46,16 @@ pandoc 不设置模板导出 docx 的样式
 pandoc --reference-doc template.docx -s input.md  -o output.docx
 ```
 
-pandoc默认的图片标题是alt文本，如果要修改图片标题为title文本而不是alt文本，请用
+pandoc在处理markdown转docx中存在以下问题
+- 不支持解析markdown中的html标签，比如`<sub>`、`<sup>`、`<img>`·等
+- pandoc默认的图片标题是alt文本，我习惯是用title文本而不是alt文本作为图片标题（这也是思源笔记、语雀等笔记软件的语法解析规则）
+
+因此可以使用lua过滤器来解决这些问题，调用语法
+
 ```bash
-pandoc --reference-doc template.docx -s input.md  -o output.docx --lua-filter image-title-to-caption.lua
+pandoc --reference-doc template.docx -s input.md  -o output.docx --lua-filter markdown-to-docx.lua
 ```
+
 相关博客：https://www.achuan-2.top/post/pandoc-exports-markdown-as-docx-how-to-modify-image-title-to-title-text-instead-of-alt-text-19kkpr.html
 
 
