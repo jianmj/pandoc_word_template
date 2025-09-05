@@ -50,7 +50,7 @@ pandoc在处理markdown转docx中存在以下问题
 - 不支持解析markdown中的html标签，比如`<sub>`、`<sup>`、`<img>`·等
 - pandoc默认的图片标题是alt文本，我习惯是用title文本而不是alt文本作为图片标题（这也是思源笔记、语雀等笔记软件的语法解析规则）
 
-因此可以使用lua过滤器来解决这些问题，调用语法
+因此可以使用lua过滤器来解决这些问题，命令如下（需要下载markdown-to-docx.lua和lua文件夹）
 
 ```bash
 pandoc --reference-doc template.docx -s input.md  -o output.docx --lua-filter markdown-to-docx.lua
