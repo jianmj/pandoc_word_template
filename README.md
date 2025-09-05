@@ -56,7 +56,10 @@ pandoc在处理markdown转docx中存在以下问题
 pandoc --reference-doc template.docx -s input.md  -o output.docx --lua-filter markdown-to-docx.lua
 ```
 
-相关博客：https://www.achuan-2.top/post/pandoc-exports-markdown-as-docx-how-to-modify-image-title-to-title-text-instead-of-alt-text-19kkpr.html
+相关博客：
+
+- [pandoc 导出markdown为word不支持html标签 - 知乎](https://zhuanlan.zhihu.com/p/1947342033103623722)
+- [pandoc将markdown导出为docx，如何修改图片标题为title文本而不是alt文本 - 知乎](https://zhuanlan.zhihu.com/p/1947343878836459221)
 
 
 ## 如何修改此模板
