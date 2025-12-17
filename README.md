@@ -142,6 +142,14 @@ pandoc --reference-doc template.docx -s input.md  -o output.docx --lua-filter ma
 1. 有序列表和无序列表可以基于模板改动项目符号，老实说这是我误打误撞搞出来的😂……目前自己都没能复现，所以大家不想折腾，还是基于本模板改动，且用且珍惜（如果有知道怎么复现的，欢迎指教🙏）。
 2. 有序列表和无序列表的行间距调整：每个列表项的间距与【正文】样式的行间距有关，此外列表项的子文本段落也是正文样式而不是【正文文本样式】（一般段落其实是【First Paragraph】、【正文文本】样式），所以需要调整列表行间距而改动【正文】样式是不太影响正文的（不过需要注意【First Paragraph】、【正文文本】样式都是基于【正文】样式改动的。为了让列表更美观，我把【正文】样式设置为1.5倍行距，不设置段前和段后距离，【First Paragraph】、【正文文本】会设置段前和段后距离
 
+## 📒博客
+
+- [全网找不到满意的 Markdown 转 Docx 模板，那就自己动手吧](https://zhuanlan.zhihu.com/p/672376543)
+- [设置word模板，Markdown 也能自动转换为美观规范的 Word 文档](https://zhuanlan.zhihu.com/p/581000852)
+- [pandoc 导出markdown为word不支持html标签](https://zhuanlan.zhihu.com/p/1947342033103623722)
+- [pandoc将markdown导出为docx，如何修改图片标题为title文本而不是alt文本](https://zhuanlan.zhihu.com/p/1947343878836459221)
+- [科研写作之Docx格式（Word）与Markdown如何互转](https://zhuanlan.zhihu.com/p/1984680822465376921)
+
 
 ## ❤Donate
 
