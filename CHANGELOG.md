@@ -1,4 +1,9 @@
 
+## 20251217
+- 添加Markdown和word互转脚本
+- 添加`templates_sci论文模板_标题不编号.docx`
+- README添加博客链接
+
 ## 20250905
 - 新增`markdown-html-recognition.lua`，解决pandoc不支持解析markdown中的html标签的问题，比如`<sub>`、`<sup>`、`<img>`·等
 - 新增`markdown-to-docx.lua`，统一调用`markdown-html-recognition.lua`和`image-title-to-caption.lua`
