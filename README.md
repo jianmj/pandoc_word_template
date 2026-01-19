@@ -147,20 +147,23 @@ pandoc input.md -t html | pandoc -f html -o output.docx --reference-doc template
 为了让列表更美观，我把【正文】样式设置为1.5倍行距，不设置段前和段后距离，【First Paragraph】、【正文文本】会设置段前和段后距离
 
 
-## 模板已知问题
-
-1. 如果使用WPS打开基于模板导出的文档，可能存在兼容性问题，建议还是用Office Word打开
-2. 模板可以做到表格整体居中，但是表格单元格自动居中需要表格本身先设置居中，否则不居中。这是因为markdown表格默认是居左的。markdown的居中语法如下：
-
-    ```markdown
-    | header 1 | header 2 |
-    | :------: | :------: |
-    |  cell 1  |  cell 2  |
-    |  cell 3  |  cell 4  |
-    |  cell 5  |  cell 6  |
-    ```
-
 ## pandoc的其他使用问题记录
+
+### WPS和Mac版本的Word可能有兼容性问题
+
+如果使用WPS和Mac版本的Word打开基于模板导出的文档，可能存在兼容性问题，建议还是用Windows端的Office Word打开
+
+### 导出docx的表格居中问题
+
+模板可以做到表格整体居中，但是表格单元格自动居中需要表格本身先设置居中，否则不居中。这是因为markdown表格默认是居左的。markdown的居中语法如下：
+
+```markdown
+| header 1 | header 2 |
+| :------: | :------: |
+|  cell 1  |  cell 2  |
+|  cell 3  |  cell 4  |
+|  cell 5  |  cell 6  |
+```
 
 
 ### 设置了代码块高亮样式，却发现导出的docx文件代码块高亮样式无法修改？
