@@ -76,7 +76,7 @@ pandoc input.md -t html | pandoc -f html -o output.docx --reference-doc template
 
 ## 如何修改docx模板
 
-注意，要修改模板，需要更改每个类型对应的Word的样式，而不是只是自己改改当前内容的样式就能work的。
+注意，要修改模板，需要更改每个类型所对应的Word的样式，而不是只是自己改改当前段落的样式就能生效的。
 
 ### 一般样式
 
