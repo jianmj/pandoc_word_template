@@ -27,7 +27,9 @@ pandoc 不设置模板导出 docx 的样式
         ![1705299592624Snipaste_2024-01-15_14-19-46.png](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/1705299592624Snipaste_2024-01-15_14-19-46.png)
     - 列表第二行顶格效果
         ![1705299404618Snipaste_2024-01-15_14-16-34.png](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/1705299404618Snipaste_2024-01-15_14-16-34.png)
-- sci论文模板：使用引述块作为Figure图注样式
+- sci论文模板：
+  - 正文双倍行距
+  - 使用引述块作为Figure图注样式
 
 
 
@@ -63,15 +65,11 @@ pandoc input.md -t html | pandoc -f html -o output.docx --reference-doc template
   - [pandoc 导出markdown为word不支持html标签](https://zhuanlan.zhihu.com/p/1947342033103623722)
   - [pandoc 将Markdown／Html导出为Docx，如何保留字体颜色](https://zhuanlan.zhihu.com/p/1996639589587231070)
 
-## pandoc的其他问题记录
+其他经验博客
+- [设置word模板，Markdown 也能自动转换为美观规范的 Word 文档](https://zhuanlan.zhihu.com/p/581000852)
+- [全网找不到满意的 Markdown 转 Docx 模板，那就自己动手吧](https://zhuanlan.zhihu.com/p/672376543)
+- [科研写作之Docx格式（Word）与Markdown如何互转](https://zhuanlan.zhihu.com/p/1984680822465376921)
 
-
-### 设置了代码块高亮样式，却发现导出的docx文件代码块高亮样式无法修改？
-当使用`--highlight-style xxx`参数导出时，代码块的高亮样式会根据 `xxx` 的值来决定。pandoc 支持多种高亮样式，如 `pygments`、`breezeDark`、`tango`、`zenburn` 等。
-
-但是如果你用markdown转docx得到的文件再作为模板的话，docx文件会有带有-Tok结尾的样式，导致代码块高亮样式无法修改。所以请直接使用本repo的docx文件作为模板。
-
-pandoc 相关issue：[When pandoc sets a Word template, it cannot set highlight-style · Issue #10896 · jgm/pandoc](https://github.com/jgm/pandoc/issues/10896)
 
 ## 如何修改docx模板
 
@@ -83,21 +81,35 @@ pandoc 相关issue：[When pandoc sets a Word template, it cannot set highlight-
 
 一般样式如下：
 
-|        样式名        |         描述         |                                       默认样式                                        |
-| :------------------: | :------------------: | :-----------------------------------------------------------------------------------: |
-|       正文文本       |   在正文段落中应用   |          首行缩进，<br />字号小四，中文字体为宋体，英文Times New Roman<br />          |
-|   First Paragraph    |       段落首段       |          首行缩进，<br />字号小四，中文字体为宋体，英文Times New Roman<br />          |
-|       Compact        | 表格单元格、列表样式 |                      字号10，中文字体为宋体，英文Times New Roman                      |
-|  Heading 1（标题1）  |       一级标题       | 字号小二，加粗，中文字体为黑体，英文Times New Roman，<br />段前24 磅，段后24 磅<br /> |
-|  Heading 2（标题2）  |       二级标题       |                  字号三号，加粗，中文字体为黑体，英文Times New Roman                  |
-|  Heading 3（标题3）  |       三级标题       |                   字号13，加粗，中文字体为黑体，英文Times New Roman                   |
-|  Heading 4（标题4）  |       四级标题       |                     字号小四，中文字体为黑体，英文Times New Roman                     |
-|  Heading 5（标题5）  |       五级标题       |                     字号小四，中文字体为黑体，英文Times New Roman                     |
-|  Heading 6（标题6）  |       六级标题       |                     字号小四，中文字体为黑体，英文Times New Roman                     |
-| Block Text（文本块） |      引述块样式      |                         四周添加1磅边框，左侧设置为6磅粗边框                          |
-|     Source Code      | 行内代码和代码块样式 |                                    四周添加1磅边框                                    |
+| **样式名**                     | **描述**                     | **默认样式**                                                                               |
+| ---------------------- | ---------------------- | -------------------------------------------------------------------------------- |
+| 正文文本             | 在正文段落中应用     | 首行缩进，<br /> 字号小四，中文字体为宋体，英文Times New Roman<br /><br />                 |
+| First Paragraph      | 段落首段             | 首行缩进，<br /> 字号小四，中文字体为宋体，英文Times New Roman<br /><br />                 |
+| Compact              | 表格单元格           | 字号10，中文字体为宋体，英文Times New Roman                                    |
+| Heading 1（标题1）   | 一级标题             | 字号小二，加粗，中文字体为黑体，英文Times New Roman，<br /> 段前24磅，段后24磅<br /><br /> |
+| Heading 2（标题2）   | 二级标题             | 字号三号，加粗，中文字体为黑体，英文Times New Roman                            |
+| Heading 3（标题3）   | 三级标题             | 字号小三，加粗，中文字体为黑体，英文Times New Roman                            |
+| Heading 4（标题4）   | 四级标题             | 字号小四，加粗，中文字体为黑体，英文Times New Roman                            |
+| Heading 5（标题5）   | 五级标题             | 字号小四，加粗，中文字体为黑体，英文Times New Roman                            |
+| Heading 6（标题6）   | 六级标题             | 字号小四，加粗，中文字体为黑体，英文Times New Roman                            |
+| Block Text（文本块） | 引述块样式           | 左侧设置为6磅粗边框                                                            |
+| Source Code          | 行内代码和代码块样式 | 四周添加1磅边框                                                                |                         |
 
-修改表格样式和列表样式比较特殊
+### 标题设置编号
+
+点击「多级列表」，点击「定义新的多级列表」，打开弹窗后点击「更多」进行展开
+![](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed/assets/20260119203219-2026-01-19.png)
+
+在「定义新的多级列表」弹窗，对每个级别设置编号格式和对应的标题
+![](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed/assets/20260119203402-2026-01-19.png)
+
+设置文本缩进位置为0，并设置所有级别
+
+![](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed/assets/20260119204001-2026-01-19.png)
+
+设置每个级别的「编号之后」是空格
+
+![](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed/assets/20260119204205-2026-01-19.png)
 
 ### 表格样式
 
@@ -117,28 +129,28 @@ pandoc 相关issue：[When pandoc sets a Word template, it cannot set highlight-
 
 ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312150014745.png)​
 
+> 有序列表和无序列表可以基于模板改动项目符号，老实说这是我误打误撞搞出来的😂……目前自己都没能复现，所以大家不想折腾，还是基于本模板改动，且用且珍惜（如果有知道怎么复现的，欢迎指教🙏）。
+
+
 #### 修改列表缩进
 
 鼠标点击列表所在行，右键点击【调整列表缩进】，选择【设置所有级别】
 
 ​![image](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/202312150014510.png)​
 
+#### 修改列表项间距
 
+每个列表项的间距与【正文】样式的行间距有关，此外列表项的子文本段落也是【正文】样式而不是【正文文本样式】。所以要修改列表项间距，需要修改【正文】样式的行间距。
 
-### 代码块高亮样式
+一般段落其实是【First Paragraph】、【正文文本】样式，而这两个样式都是继承于【正文】样式的，所以调整列表行间距而改动【正文】样式有可能会影响到普通文本样式。
 
-当使用--highlight-style xxx参数导出时，代码块的高亮样式会根据 xxx 的值来决定。pandoc 支持多种高亮样式，如 pygments、breezeDark、tango、zenburn 等。
-具体见[pandoc_highlight](https://github.com/kaityo256/pandoc_highlight).
+为了让列表更美观，我把【正文】样式设置为1.5倍行距，不设置段前和段后距离，【First Paragraph】、【正文文本】会设置段前和段后距离
 
-如果发现代码块高亮样式无法修改，可能是因为word模板的样式包含代码高亮样式，导致无法修改。可以尝试删除模板中的代码高亮样式（Source Code以及所有Tok结尾的样式），然后重新导出。
-
-![1749176940350PixPin_2025-06-06_10-28-00.png](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/1749176940350PixPin_2025-06-06_10-28-00.png)
 
 ## 模板已知问题
 
 1. 如果使用WPS打开基于模板导出的文档，可能存在兼容性问题，建议还是用Office Word打开
-2. 图片无法自动居中
-3. 模板可以做到表格整体居中，但是表格单元格自动居中需要思源笔记文档中的表格本身先设置居中，否则不居中。这是因为markdown表格默认是居左的，markdown的居中语法如下：
+2. 模板可以做到表格整体居中，但是表格单元格自动居中需要表格本身先设置居中，否则不居中。这是因为markdown表格默认是居左的。markdown的居中语法如下：
 
     ```markdown
     | header 1 | header 2 |
@@ -148,21 +160,20 @@ pandoc 相关issue：[When pandoc sets a Word template, it cannot set highlight-
     |  cell 5  |  cell 6  |
     ```
 
-## 我的探索过程记录
-
-1. 有序列表和无序列表可以基于模板改动项目符号，老实说这是我误打误撞搞出来的😂……目前自己都没能复现，所以大家不想折腾，还是基于本模板改动，且用且珍惜（如果有知道怎么复现的，欢迎指教🙏）。
-2. 有序列表和无序列表的行间距调整：每个列表项的间距与【正文】样式的行间距有关，此外列表项的子文本段落也是正文样式而不是【正文文本样式】（一般段落其实是【First Paragraph】、【正文文本】样式），所以需要调整列表行间距而改动【正文】样式是不太影响正文的（不过需要注意【First Paragraph】、【正文文本】样式都是基于【正文】样式改动的。为了让列表更美观，我把【正文】样式设置为1.5倍行距，不设置段前和段后距离，【First Paragraph】、【正文文本】会设置段前和段后距离
-
-## 📒博客
-
-- [全网找不到满意的 Markdown 转 Docx 模板，那就自己动手吧](https://zhuanlan.zhihu.com/p/672376543)
-- [设置word模板，Markdown 也能自动转换为美观规范的 Word 文档](https://zhuanlan.zhihu.com/p/581000852)
-- [pandoc 导出markdown为word不支持html标签](https://zhuanlan.zhihu.com/p/1947342033103623722)
-- [pandoc将markdown导出为docx，如何修改图片标题为title文本而不是alt文本](https://zhuanlan.zhihu.com/p/1947343878836459221)
-- [科研写作之Docx格式（Word）与Markdown如何互转](https://zhuanlan.zhihu.com/p/1984680822465376921)
+## pandoc的其他使用问题记录
 
 
-## ❤Donate
+### 设置了代码块高亮样式，却发现导出的docx文件代码块高亮样式无法修改？
+当使用`--highlight-style xxx`参数导出时，代码块的高亮样式会根据 `xxx` 的值来决定。pandoc 支持多种高亮样式，如 `pygments`、`breezeDark`、`tango`、`zenburn` 等。
+
+但是如果你用markdown转docx得到的文件再作为模板的话，docx文件会有带有-Tok结尾的样式，导致代码块高亮样式无法修改。所以请直接使用本repo的docx文件作为模板。也可以尝试删除docx中的代码高亮样式（所有Tok结尾的样式），然后再重新导出。
+
+![1749176940350PixPin_2025-06-06_10-28-00.png](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/1749176940350PixPin_2025-06-06_10-28-00.png)
+
+pandoc 相关issue：[When pandoc sets a Word template, it cannot set highlight-style · Issue #10896 · jgm/pandoc](https://github.com/jgm/pandoc/issues/10896)
+
+
+## ❤用爱发电
 
 如果这个项目对你有帮助，欢迎给我打赏！
 
