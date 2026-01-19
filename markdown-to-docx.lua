@@ -4,7 +4,9 @@
 -- 在此列表中添加/调整顺序即可，无需再手写多段 require 与循环。
 local modules = {
     -- markdown 里的html语法识别：上下标、img标签等
-	'lua/markdown-html-recognition',
+	-- 'lua/markdown-html-recognition',
+	-- 为文本添加字体颜色支持
+	'lua/add_font_color',
     -- pandoc默认把图片alt作为图片标题，改为title作为图片标题
 	'lua/image-title-to-caption',
 	-- 在下方继续追加模块名称，例如：

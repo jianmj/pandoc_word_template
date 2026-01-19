@@ -1,6 +1,6 @@
 > 大多数 Markdown 笔记应用程序使用 Pandoc 将笔记转换为 Word 文档，例如我主要使用的思源笔记。然而，Pandoc 默认导出的 Word 文档样式往往不美观，不符合中文排版习惯。
 >
-> 幸运的是，pandoc 可以自定义 Word 模板，用于导出时的自动格式化以美化文档，但是很奇怪的是，全网很少有人分享自己是如何具体制作模板的，就算提到也只是泛泛而谈。我自己在制作模板中遇到很多问题，比如怎么设置表格样式、怎么设置列表样式。2023 年 12 月 15 日，我终于突然解决了设置模板的有序列表和无序列表样式问题，使得自己的模板很大程度可用了，所以分享下目前在用的 word 模板，也当做一个抛砖引用，希望有更多人能分享自己的模板！😁
+> 幸运的是，pandoc 可以自定义 Word 模板，用于导出时的自动格式化以美化文档，但是很奇怪的是，全网很少有人分享自己是如何具体制作模板的，就算提到也只是泛泛而谈。我自己在制作模板中遇到很多问题，比如怎么设置表格样式、怎么设置列表样式。这里分享下目前在用的 word 模板，也当做一个抛砖引用，希望有更多人能分享自己的模板！😁
 
 ## 前排提示
 
@@ -12,11 +12,11 @@
 
 pandoc 不设置模板导出 docx 的样式
 
-![](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/20231215114447-2023-12-15.png)
+![](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed/assets/20260119195423-2026-01-19.png)
 
 设置本模板导出 docx 的样式
 
-![](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/20231215114500-2023-12-15.png)
+![](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed/assets/20260119194848-2026-01-19.png)
 
 
 ## 模板介绍
@@ -27,42 +27,53 @@ pandoc 不设置模板导出 docx 的样式
         ![1705299592624Snipaste_2024-01-15_14-19-46.png](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/1705299592624Snipaste_2024-01-15_14-19-46.png)
     - 列表第二行顶格效果
         ![1705299404618Snipaste_2024-01-15_14-16-34.png](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/1705299404618Snipaste_2024-01-15_14-16-34.png)
+- sci论文模板：使用引述块作为Figure图注样式
 
-- 可设置代码块高亮样式 or 不可设置代码块高亮样式
-  - 不可设置代码块高亮样式默认高亮样式为pygments，由于带有Tok为结尾的样式，无法使用--highlight-style参数设置代码块高亮样式
-  - 可设置代码块高亮样式的模板没有带有Tok样式，可以使用--highlight-style参数设置代码块高亮样式
-  - pandoc 相关链接：[When pandoc sets a Word template, it cannot set highlight-style · Issue #10896 · jgm/pandoc](https://github.com/jgm/pandoc/issues/10896)
 
 
 ## 如何使用此模板
 
-以思源笔记为例，在【设置】-【导出】-【导出 Word .docx模板路径】设置模板文件地址即可。
-
-![](https://raw.githubusercontent.com/Achuan-2/PicBed/pic/assets/20231215114355-2023-12-15.png)
-
-其他笔记软件请自行探索，pandoc是通过 `--reference-doc `参数设置模板路径的，可以用命令行调用下面命令：
+pandoc通过 `--reference-doc `参数设置模板路径的，可以用命令行调用下面命令：
 
 ```bash
-pandoc --reference-doc template.docx -s input.md  -o output.docx
+pandoc input.md --reference-doc template.docx -o output.docx
 ```
 
-pandoc在处理markdown转docx中存在以下问题
-- 不支持解析markdown中的html标签，比如`<sub>`、`<sup>`、`<img>`·等
-- pandoc默认的图片标题是alt文本，我习惯是用title文本而不是alt文本作为图片标题（这也是思源笔记、语雀等笔记软件的语法解析规则）
+不过，pandoc在处理markdown转docx中存在以下问题
+- 问题：不支持解析markdown中的html标签，比如`<sub>`、`<sup>`、`<img>`·等
+  - 解决方案1：可以使用lua过滤器来解决这个问题，使用本repo的`lua/markdown-html-recognition.lua`文件
+  - 解决方案2：先转html再转docx
+- 问题：pandoc默认的图片标题是alt文本，我习惯是用title文本而不是alt文本作为图片标题（这也是思源笔记、语雀等笔记软件的语法解析规则）
+  - 解决方案：使用本repo的`lua/image-title-to-caption.lua`文件
+- 问题：markdown设置了字体颜色，比如`<span style="color:red">红色文字</span>`，但是导出时颜色丢失
+  - 解决方案：使用本repo的`lua/add_font_color.lua`文件
+- 问题：图片编号无法自定义
+  - 解决方案：使用本repo 的`lua/image-title-to-caption-add-number.lua`
 
-可以使用lua过滤器来解决这些问题，命令如下（需要下载本repo的markdown-to-docx.lua和lua文件夹）
+本repo提供了一个lua过滤器合集markdown-to-docx.lua，可以根据需要选用lua，这样可以让导出的docx文件更符合自己的需求：
 
 ```bash
-pandoc --reference-doc template.docx -s input.md  -o output.docx --lua-filter markdown-to-docx.lua
+pandoc input.md -t html | pandoc -f html -o output.docx --reference-doc template.docx --lua-filter markdown-to-docx.lua
 ```
 
-相关博客：
+我的pandoc使用博客：
 
-- [pandoc 导出markdown为word不支持html标签 - 知乎](https://zhuanlan.zhihu.com/p/1947342033103623722)
-- [pandoc将markdown导出为docx，如何修改图片标题为title文本而不是alt文本 - 知乎](https://zhuanlan.zhihu.com/p/1947343878836459221)
+  - [pandoc 导出docx如何对图表进行编号](https://zhuanlan.zhihu.com/p/1996674548762944192)
+  - [pandoc将markdown导出为docx，如何修改图片标题为title文本而不是alt文本](https://zhuanlan.zhihu.com/p/1947343878836459221)
+  - [pandoc 导出markdown为word不支持html标签](https://zhuanlan.zhihu.com/p/1947342033103623722)
+  - [pandoc 将Markdown／Html导出为Docx，如何保留字体颜色](https://zhuanlan.zhihu.com/p/1996639589587231070)
+
+## pandoc的其他问题记录
 
 
-## 如何修改此模板
+### 设置了代码块高亮样式，却发现导出的docx文件代码块高亮样式无法修改？
+当使用`--highlight-style xxx`参数导出时，代码块的高亮样式会根据 `xxx` 的值来决定。pandoc 支持多种高亮样式，如 `pygments`、`breezeDark`、`tango`、`zenburn` 等。
+
+但是如果你用markdown转docx得到的文件再作为模板的话，docx文件会有带有-Tok结尾的样式，导致代码块高亮样式无法修改。所以请直接使用本repo的docx文件作为模板。
+
+pandoc 相关issue：[When pandoc sets a Word template, it cannot set highlight-style · Issue #10896 · jgm/pandoc](https://github.com/jgm/pandoc/issues/10896)
+
+## 如何修改docx模板
 
 注意，要修改模板，需要更改每个类型对应的Word的样式，而不是只是自己改改当前内容的样式就能work的。
 
