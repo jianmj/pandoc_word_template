@@ -2,7 +2,7 @@
 ## 20260119
 - 完善模板
 - 完善README
-- 添加`add_font_color.lua`，实现字体颜色保留
+- 添加`preserve_font_color.lua`，实现字体颜色保留
 
 ## 20251217
 - 添加Markdown和word互转脚本

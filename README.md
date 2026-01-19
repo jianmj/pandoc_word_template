@@ -48,7 +48,7 @@ pandoc input.md --reference-doc template.docx -o output.docx
 - 问题：pandoc默认的图片标题是alt文本，我习惯是用title文本而不是alt文本作为图片标题（这也是思源笔记、语雀等笔记软件的语法解析规则）
   - 解决方案：使用本repo的`lua/image-title-to-caption.lua`文件
 - 问题：markdown设置了字体颜色，比如`<span style="color:red">红色文字</span>`，但是导出时颜色丢失
-  - 解决方案：使用本repo的`lua/add_font_color.lua`文件
+  - 解决方案：使用本repo的`lua/preserve_font_color.lua`文件
 - 问题：图片编号无法自定义
   - 解决方案：使用本repo 的`lua/image-title-to-caption-add-number.lua`
 
