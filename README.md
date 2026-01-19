@@ -35,24 +35,27 @@ pandoc 不设置模板导出 docx 的样式
 
 ## 如何使用此模板
 
-pandoc通过 `--reference-doc `参数设置模板路径的，可以用命令行调用下面命令：
+pandoc通过 `--reference-doc `参数来设置模板路径，可以使用下面命令来设置导出docx模板：
 
 ```bash
 pandoc input.md --reference-doc template.docx -o output.docx
 ```
 
 不过，pandoc在处理markdown转docx中存在以下问题
-- 问题：不支持解析markdown中的html标签，比如`<sub>`、`<sup>`、`<img>`·等
+
+- **问题**：不支持解析markdown中的html标签，比如、、`<img>`·等
+
   - 解决方案1：可以使用lua过滤器来解决这个问题，使用本repo的`lua/markdown-html-recognition.lua`文件
   - 解决方案2：先转html再转docx
-- 问题：pandoc默认的图片标题是alt文本，我习惯是用title文本而不是alt文本作为图片标题（这也是思源笔记、语雀等笔记软件的语法解析规则）
-  - 解决方案：使用本repo的`lua/image-title-to-caption.lua`文件
-- 问题：markdown设置了字体颜色，比如`<span style="color:red">红色文字</span>`，但是导出时颜色丢失
-  - 解决方案：使用本repo的`lua/preserve_font_color.lua`文件
-- 问题：图片编号无法自定义
-  - 解决方案：使用本repo 的`lua/image-title-to-caption-add-number.lua`
+- **问题**：pandoc默认的图片标题是alt文本，我习惯是用title文本而不是alt文本作为图片标题（这也是思源笔记、语雀等笔记软件的语法解析规则）
 
-本repo提供了一个lua过滤器合集markdown-to-docx.lua，可以根据需要选用lua，这样可以让导出的docx文件更符合自己的需求：
+  - 解决方案：使用本repo的`lua/image-title-to-caption.lua`文件
+- **问题**：markdown设置了字体颜色，比如`<span style="color:red">红色文字</span>`，但是导出时颜色丢失
+
+  - 解决方案：使用本repo的`lua/preserve_font_color.lua`文件
+- **问题**：图片编号无法自定义
+
+  - 解决方案：使用本repo 的`lua/image-title-to-caption-add-number.lua`
 
 ```bash
 pandoc input.md -t html | pandoc -f html -o output.docx --reference-doc template.docx --lua-filter markdown-to-docx.lua
