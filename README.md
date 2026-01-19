@@ -1,3 +1,5 @@
+<img alt="Star History Chart" src="https://api.star-history.com/svg?repos=Achuan-2/pandoc_docx_template&type=Date" />
+
 > 大多数 Markdown 笔记应用程序使用 Pandoc 将笔记转换为 Word 文档，例如我主要使用的思源笔记。然而，Pandoc 默认导出的 Word 文档样式往往不美观，不符合中文排版习惯。
 >
 > 幸运的是，pandoc 可以自定义 Word 模板，用于导出时的自动格式化以美化文档，但是很奇怪的是，全网很少有人分享自己是如何具体制作模板的，就算提到也只是泛泛而谈。我自己在制作模板中遇到很多问题，比如怎么设置表格样式、怎么设置列表样式。这里分享下目前在用的 word 模板，也当做一个抛砖引用，希望有更多人能分享自己的模板！😁
