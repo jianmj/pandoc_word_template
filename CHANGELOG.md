@@ -3,6 +3,7 @@
 
 - 🎨 lua为段落的单个图片添加Figure样式，word模板添加Figure居中样式
 - 🎨 行内代码与代码块分离，添加lua脚本和word样式
+- 📝支持在任意位置调用`markdown-to-docx.lua`
 
 ## 20260119
 - 完善模板

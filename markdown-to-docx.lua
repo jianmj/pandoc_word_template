@@ -1,3 +1,4 @@
+-- Author：Achuan-2
 -- 调用：pandoc input.md -o output.docx --lua-filter=markdown-to-docx.lua
 
 -- =================================================================
