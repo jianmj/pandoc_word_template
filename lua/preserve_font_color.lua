@@ -1,3 +1,4 @@
+-- Author: Achuan-2
 function Span(el)
   -- 辅助：解析颜色字符串为 6 位大写十六进制（不带 #），支持颜色名、#hex、rgb()/rgba()
   local function parse_color(s)

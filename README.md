@@ -46,13 +46,13 @@ pandoc input.md --reference-doc template.docx -o output.docx
 
 不过，pandoc在处理markdown转docx中存在以下问题
 
-- **问题**：不支持解析markdown中的html标签，比如`<sub>`、`<sup>`、`<img>`·等
+- **问题**：不支持解析markdown中的html标签，比如`<sub>`、`<sup>`、`<img>`等
 
   - 解决方案1：可以使用lua过滤器来解决这个问题，使用本repo的`lua/markdown-html-recognition.lua`文件
   - 解决方案2：先转html再转docx
 - **问题**：pandoc默认的图片标题是alt文本，我习惯是用title文本而不是alt文本作为图片标题（这也是思源笔记、语雀等笔记软件的语法解析规则）
 
-  - 解决方案：使用本repo的`lua/image-title-to-caption.lua`文件
+  - 解决方案：使用本repo的`lua/image-title-to-caption.lua`文件，，并且这个lua还能把图片都添加Figure样式，就可以用Figure样式整体控制图片是居左还是居右了
 - **问题**：markdown设置了字体颜色，比如`<span style="color:red">红色文字</span>`，但是导出时颜色丢失
 
   - 解决方案：使用本repo的`lua/preserve_font_color.lua`文件

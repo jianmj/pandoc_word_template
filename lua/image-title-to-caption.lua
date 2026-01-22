@@ -22,9 +22,10 @@ function Para(para)
             local caption = create_caption(img.title)
             return pandoc.Figure(content, caption)
         else
-            -- 如果只有alt文本（无标题），确保不生成caption
-            img.caption = {}
-            return pandoc.Para({img})
+            -- 如果只有alt文本（无标题），也将其包装为Figure但不生成caption
+            local content = {pandoc.Plain({img})}
+            local caption = {}
+            return pandoc.Figure(content, caption)
         end
     end
     -- 如果不是单独的图片，返回未更改的段落
