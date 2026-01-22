@@ -87,7 +87,7 @@ pandoc input.md -t html | pandoc -f html -o output.docx --reference-doc template
 
 ### 一般样式
 
-一般样式，只需要打开word的样式面板，鼠标点击改行，自动显示对应的样式，然后点击【修改】根据自己的需求修改样式就可以了
+一般样式，只需要打开word的样式面板，鼠标点击该行，将自动显示对应的样式，然后点击【修改】根据自己的需求修改样式就可以了
 
 ![](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed/assets/20260122112727-2026-01-22.png)
 
