@@ -1,5 +1,16 @@
 -- 调用：pandoc input.md -o output.docx --lua-filter=markdown-to-docx.lua
 
+-- =================================================================
+-- 路径处理：动态获取当前脚本所在目录，确保 require 能找到子模块
+-- =================================================================
+local script_path = debug.getinfo(1, "S").source:sub(2) -- 获取脚本文件路径
+-- 兼容 Windows (\) 和 Unix (/) 路径，获取所在目录
+local script_dir = script_path:match("(.*[/\\])") or "./"
+-- 将脚本所在目录添加到 Lua 的搜索路径中
+-- 这样 require('lua/xxx') 就会相对于本脚本所在位置查找
+package.path = script_dir .. "?.lua;" .. script_dir .. "?/init.lua;" .. package.path
+
+
 -- 通过一个按顺序维护的模块列表来组织需要加载的 Pandoc 过滤器。
 -- 在此列表中添加/调整顺序即可，无需再手写多段 require 与循环。
 local modules = {
