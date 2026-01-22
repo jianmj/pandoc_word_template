@@ -9,6 +9,8 @@ local modules = {
 	'lua/preserve_font_color',
     -- pandoc默认把图片alt作为图片标题，改为title作为图片标题
 	'lua/image-title-to-caption',
+	-- 为行内代码添加自定义样式
+	'lua/add-inline-code',
 	-- 在下方继续追加模块名称，例如：
 	-- 'your-extra-filter-module',
 }

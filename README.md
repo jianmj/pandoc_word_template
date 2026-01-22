@@ -46,7 +46,7 @@ pandoc input.md --reference-doc template.docx -o output.docx
 
 不过，pandoc在处理markdown转docx中存在以下问题
 
-- **问题**：不支持解析markdown中的html标签，比如、、`<img>`·等
+- **问题**：不支持解析markdown中的html标签，比如`<sub>`、`<sup>`、`<img>`·等
 
   - 解决方案1：可以使用lua过滤器来解决这个问题，使用本repo的`lua/markdown-html-recognition.lua`文件
   - 解决方案2：先转html再转docx
@@ -59,6 +59,10 @@ pandoc input.md --reference-doc template.docx -o output.docx
 - **问题**：图片编号无法自定义
 
   - 解决方案：使用本repo 的`lua/image-title-to-caption-add-number.lua`
+- **问题**：pandoc代码块和行内代码都是在word里默认都是用一个样式的Source Code，比如我想要代码块只加边框没有底纹，行内代码有底纹就做不到
+  - 解决方案：使用本repo 的`lua/add-inline-code.lua`，为行内代码添加自定义样式`Inline Code`，然后在word模板中修改该样式即可
+
+本repo提供了一个lua过滤器合集markdown-to-docx.lua，可以根据需要选用lua，这样可以让导出的docx文件更符合自己的需求：
 
 ```bash
 pandoc input.md -t html | pandoc -f html -o output.docx --reference-doc template.docx --lua-filter markdown-to-docx.lua
