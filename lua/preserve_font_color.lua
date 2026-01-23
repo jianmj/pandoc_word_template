@@ -13,18 +13,15 @@ function Span(el)
     }
     if named[lower] then return named[lower] end
 
-    -- 6 位 hex (#aabbcc 或 aabbcc)
     local hex = s:match("#?(%x%x%x%x%x%x)")
     if hex then return hex:upper() end
 
-    -- rgb(r,g,b)
     local r,g,b = s:match("rgb%((%d+),%s*(%d+),%s*(%d+)%)")
     if r and g and b then
       local function h(n) return string.format("%02X", tonumber(n) or 0) end
       return h(r)..h(g)..h(b)
     end
 
-    -- rgba(r,g,b,a) -> 合成到白色背景上
     local ra,ga,ba,aa = s:match("rgba%((%d+),%s*(%d+),%s*(%d+),%s*([%d%.]+)%)")
     if ra and ga and ba and aa then
       local R = tonumber(ra) or 0
@@ -48,7 +45,6 @@ function Span(el)
   if el.attributes.style then
     local style = el.attributes.style
 
-    -- 将 style 分解为属性表，避免 'background-color' 包含 'color' 导致错误匹配
     local props = {}
     for k, v in style:gmatch("([%w%-]+)%s*:%s*([^;]+)") do
       local key = string.lower(k:gsub("^%s*(.-)%s*$", "%1"))
@@ -63,28 +59,35 @@ function Span(el)
     local bg_hex = parse_color(bg_color_raw)
 
     if text_hex or bg_hex then
-      local result = {}
-      local open = '<w:r><w:rPr>'
+      -- 将 Span 的内容 stringify 为纯文本并做 XML 转义
+      local text = pandoc.utils.stringify(el)
+
+      local function xml_escape(s)
+        s = s:gsub("&", "&amp;")
+        s = s:gsub("<", "&lt;")
+        s = s:gsub(">", "&gt;")
+        s = s:gsub('\r\n', '\n')
+        s = s:gsub('\r', '\n')
+        s = s:gsub('"', "&quot;")
+        s = s:gsub("'", "&apos;")
+        return s
+      end
+
+      local need_preserve = text:match("^%s") or text:match("%s$") or text:match("  ")
+      local t_attr = need_preserve and ' xml:space="preserve"' or ''
+
+      local run = '<w:r><w:rPr>'
       if text_hex then
-        open = open .. '<w:color w:val="' .. text_hex .. '"/>'
+        run = run .. '<w:color w:val="' .. text_hex .. '"/>'
       end
       if bg_hex then
-        open = open .. '<w:shd w:val="clear" w:color="auto" w:fill="' .. bg_hex .. '"/>'
+        run = run .. '<w:shd w:val="clear" w:color="auto" w:fill="' .. bg_hex .. '"/>'
       end
-      open = open .. '</w:rPr><w:t>'
+      run = run .. '</w:rPr><w:t' .. t_attr .. '>' .. xml_escape(text) .. '</w:t></w:r>'
 
-      table.insert(result, pandoc.RawInline('openxml', open))
-      for _, item in ipairs(el.content) do
-        table.insert(result, item)
-      end
-      table.insert(result, pandoc.RawInline('openxml', '</w:t></w:r>'))
-
-      return result
+      return { pandoc.RawInline('openxml', run) }
     end
   end
 
   return el
 end
-
-
-return { Span = Span }
