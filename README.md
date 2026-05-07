@@ -25,10 +25,8 @@ pandoc 不设置模板导出 docx 的样式
 
 - 标题编号 or 不编号
 - 列表第二行缩进 or 列表第二行顶格
-    - 列表第二行缩进
-        ![1705299592624Snipaste_2024-01-15_14-19-46.png](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/1705299592624Snipaste_2024-01-15_14-19-46.png)
-    - 列表第二行顶格效果
-        ![1705299404618Snipaste_2024-01-15_14-16-34.png](https://fastly.jsdelivr.net/gh/Achuan-2/PicBed@pic/assets/1705299404618Snipaste_2024-01-15_14-16-34.png)
+    <img width="1740" height="936" alt="image" src="https://github.com/user-attachments/assets/f1443f6e-92d1-495c-bead-c5cf510675e7" />
+
 - sci论文模板：
   - 正文双倍行距
   - 使用引述块作为Figure图注样式
