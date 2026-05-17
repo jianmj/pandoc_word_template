@@ -38,13 +38,13 @@ pandoc 不设置模板导出 docx 的样式
 
 ### 通过pandoc命令使用
 
-pandoc通过 `--reference-doc `参数来设置模板路径，可以使用下面命令来设置导出docx模板：
+pandoc通过 `--reference-doc `参数来设置模板路径，可以使用下面命令来设置导出Word(.docx)模板：
 
 ```bash
 pandoc input.md --reference-doc templates/template_标题不编号-列表第二行顶格.docx -o output.docx
 ```
 
-为保证Markdown中的HTML标签转化正常，可以使用下面命令：
+为保证Markdown中的HTML标签转换正常，可以使用下面命令：
 
 ```bash
 pandoc README.md -t html | \
