@@ -253,4 +253,4 @@ pandoc 相关issue：[When pandoc sets a Word template, it cannot set highlight-
 
 如果这个项目对你有帮助，欢迎给我打赏！
 
-<img src="https://cdn.nlark.com/yuque/0/2024/jpeg/1408046/1714754573393-9c7f70b0-05ec-489e-b5a2-1a37fb681f6f.jpeg?x-oss-process=image%2Fformat%2Cwebp%2Finterlace%2C1" width="50%" >
+<img src="https://fastly.jsdelivr.net/gh/Achuan-2/PicBed/assets/20241128221208-2024-11-28.png" width="50%" >
