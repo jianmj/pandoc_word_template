@@ -49,8 +49,7 @@ pandoc input.md --reference-doc templates/template_标题不编号-列表第二�
 ```bash
 pandoc README.md -t html | \
     pandoc -f html -o README.docx \
-    --reference-doc templates/template_标题不编号-列表第二行顶格.docx \
-    --lua-filter markdown-to-docx.lua
+    --reference-doc templates/template_标题不编号-列表第二行顶格.docx
 ```
 
 ### 在笔记软件使用
