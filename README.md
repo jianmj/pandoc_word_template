@@ -7,7 +7,7 @@
 ## 前排提示
 
 - 本模板仅在Windows端的Office Word进行测试，可能不适用于**WPS**和**苹果端的Office**。
-- 把模板文件内容清空，可以减小导出word的文件大小。
+
 
 
 ## 样式预览
@@ -25,7 +25,7 @@ pandoc 不设置模板导出 docx 的样式
 
 - 标题编号 or 不编号
 - 列表第二行缩进 or 列表第二行顶格
-    <img width="1740" height="936" alt="image" src="https://github.com/user-attachments/assets/f1443f6e-92d1-495c-bead-c5cf510675e7" />
+    <img  alt="image" src="https://github.com/user-attachments/assets/f1443f6e-92d1-495c-bead-c5cf510675e7" />
 
 - sci论文模板：
   - 正文双倍行距
@@ -36,13 +36,48 @@ pandoc 不设置模板导出 docx 的样式
 
 ## 如何使用此模板
 
+### 通过pandoc命令使用
+
 pandoc通过 `--reference-doc `参数来设置模板路径，可以使用下面命令来设置导出docx模板：
 
 ```bash
-pandoc input.md --reference-doc template.docx -o output.docx
+pandoc input.md --reference-doc templates/template_标题不编号-列表第二行顶格.docx -o output.docx
 ```
 
-不过，pandoc在处理markdown转docx中存在以下问题
+### 在笔记软件使用
+
+- **Typora如何设置导出为Word(.docx)的模板**
+
+  在Typora的偏好设置中的「导出-Word(.docx)」设置样式文件路径
+
+  <img alt="PixPin_2026-05-17_16-46-12" src="https://assets.b3logfile.com/siyuan/1610205759005/assets/PixPin_2026-05-17_16-46-12-20260517164614-82839lh.png" />
+- **思源笔记如何设置导出为Word(.docx)的模板**
+
+  在思源笔记的设置中的「导出-Pandoc执行参数」设置`--reference-doc "word模板路径"`
+
+  <img alt="PixPin_2026-05-17_16-47-31" src="https://assets.b3logfile.com/siyuan/1610205759005/assets/PixPin_2026-05-17_16-47-31-20260517164734-yrmzcia.png" />
+
+  然后通过文档块的菜单的「导出-Word(.docx)」按钮导出为Word(.docx)
+
+  <img alt="PixPin_2026-05-17_17-06-45" src="https://assets.b3logfile.com/siyuan/1610205759005/assets/PixPin_2026-05-17_17-06-45-20260517170655-1wr8d9j.png" />
+- **Obsidian如何设置导出为Word(.docx)的模板**
+
+  安装**obsidian-enhancing-export插件**
+
+  在插件设置的「编辑命令模板」，选择Word(.docx)，设置自定义参数为`--reference-doc "word模板路径"`
+
+  <img alt="PixPin_2026-05-17_17-08-56" src="https://assets.b3logfile.com/siyuan/1610205759005/assets/PixPin_2026-05-17_17-08-56-20260517170858-2crlf4r.png" />
+
+  然后即可点击文档右键菜单中的「导出为……」，选择导出为Word(.docx)
+
+  <img alt="PixPin_2026-05-17_17-11-32" src="https://assets.b3logfile.com/siyuan/1610205759005/assets/PixPin_2026-05-17_17-11-32-20260517171134-9kwxous.png" />
+
+
+
+
+## 进阶：pandoc在markdown转docx中存在的问题及解决方案
+
+pandoc在处理markdown转docx中存在以下问题
 
 - **问题**：不支持解析markdown中的html标签，比如`<sub>`、`<sup>`、`<img>`等
 
@@ -63,7 +98,7 @@ pandoc input.md --reference-doc template.docx -o output.docx
 本repo提供了一个lua过滤器合集markdown-to-docx.lua，可以根据需要选用lua，这样可以让导出的docx文件更符合自己的需求：
 
 ```bash
-pandoc input.md -t html | pandoc -f html -o output.docx --reference-doc template.docx --lua-filter markdown-to-docx.lua
+pandoc input.md -t html | pandoc -f html -o output.docx --reference-doc templates/template_标题不编号-列表第二行顶格.docx --lua-filter markdown-to-docx.lua
 ```
 
 我的pandoc使用博客：
