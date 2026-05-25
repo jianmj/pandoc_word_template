@@ -89,6 +89,14 @@ pandoc README.md -t html | \
 默认会使用 `templates/template_标题不编号-列表第二行顶格.docx` 作为 Word 参考模板，并加载 `markdown-to-docx.lua` 过滤器，以便处理图片标题、字体颜色、行内代码等 Pandoc 默认转换效果不理想的内容。
 
 Agent 安装Skill方式：
+
+方式一：让AI自己安装
+在 Claude Code、Codex、OpenClaw 等支持 Skill 的 Agent 里，直接说：
+```
+帮我安装这个 skill：https://github.com/Achuan-2/pandoc_docx_template
+```
+
+方式二：人工手动安装
 - Codex
 
   打开`C:\Users\Achuan-2\.codex\skills`文件夹，存放本Skill相关文件
